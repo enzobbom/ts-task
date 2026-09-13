@@ -49,6 +49,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-data-mongodb-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.assertj:assertj-core'
 
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.13.0'
