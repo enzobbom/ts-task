@@ -1,4 +1,4 @@
-package com.javanauta.ts.taskscheduler.integration.controller;
+package com.javanauta.ts.taskscheduler.controller;
 
 import com.javanauta.ts.apicontract.http.HttpHeaders;
 import com.javanauta.ts.apicontract.response.enums.ResponseStatus;

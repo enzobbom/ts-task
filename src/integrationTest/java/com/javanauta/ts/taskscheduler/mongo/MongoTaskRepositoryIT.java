@@ -1,4 +1,4 @@
-package com.javanauta.ts.taskscheduler.integration.mongo;
+package com.javanauta.ts.taskscheduler.mongo;
 
 import com.javanauta.ts.taskscheduler.adapters.out.persistence.MongoTaskRepository;
 import com.javanauta.ts.taskscheduler.adapters.out.persistence.config.MongoConfig;

@@ -1,4 +1,4 @@
-package com.javanauta.ts.taskscheduler.integration.rabbitmq;
+package com.javanauta.ts.taskscheduler.rabbitmq;
 
 import com.javanauta.ts.events.notification.NotificationRequestEvent;
 import com.javanauta.ts.events.notification.messaging.Exchanges;
