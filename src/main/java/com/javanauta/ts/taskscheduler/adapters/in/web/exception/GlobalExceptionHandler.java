@@ -38,7 +38,6 @@ public class GlobalExceptionHandler {
             PresentationExceptionCode.PARAM_OR_PATH_VAR_VIOLATION_ERROR, HttpStatus.UNPROCESSABLE_CONTENT,
             PresentationExceptionCode.TYPE_MISMATCH_ERROR, HttpStatus.BAD_REQUEST,
             PresentationExceptionCode.JSON_PARSE_ERROR, HttpStatus.BAD_REQUEST,
-            PresentationExceptionCode.MISSING_PARAMETER_ERROR, HttpStatus.BAD_REQUEST,
             PresentationExceptionCode.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
 
     // Input validation exceptions: @Valid and @Validated
@@ -145,23 +144,6 @@ public class GlobalExceptionHandler {
                 httpCode.value(),
                 errorIdentifier,
                 exceptionCode.getDefaultMessage(),
-                List.of());
-
-        return ResponseEntity.status(httpCode).body(errorResponse);
-    }
-
-    // Handles missing required parameters in request
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseEntity<ErrorResponse> handleMissingServletRequestParameterException(MissingServletRequestParameterException ex) {
-        ExceptionCode exceptionCode = PresentationExceptionCode.MISSING_PARAMETER_ERROR;
-        HttpStatus httpCode = PRESENTATION_CODE_HTTP_STATUS_MAP.get(exceptionCode);
-        String errorIdentifier = exceptionCode.getIdentifier();
-        String message = "Missing required parameter: " + ex.getParameterName();
-
-        ErrorResponse errorResponse = new ErrorResponse(
-                httpCode.value(),
-                errorIdentifier,
-                message,
                 List.of());
 
         return ResponseEntity.status(httpCode).body(errorResponse);
