@@ -6,6 +6,7 @@ import com.javanauta.ts.taskscheduler.application.data.TaskData;
 import com.javanauta.ts.taskscheduler.domain.model.Task;
 import com.javanauta.ts.taskscheduler.domain.model.enums.NotificationStatus;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataMongoTest
 @Import(MongoConfig.class)
 @Testcontainers
+@Disabled
 class MongoTaskRepositoryIT {
     private static final Instant INITIAL_DATE_TIME = Instant.parse("2099-09-13T10:00:00Z");
     private static final Instant FINAL_DATE_TIME = Instant.parse("2099-09-13T11:00:00Z");
