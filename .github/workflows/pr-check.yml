@@ -30,10 +30,5 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Docker info
-        run: |
-          docker version
-          docker info
-
       - name: Build with Gradle
-        run: ./gradlew build --info # runs 'check' test, which runs unit and integration tests
+        run: ./gradlew build # runs 'check' test, which runs unit and integration tests
