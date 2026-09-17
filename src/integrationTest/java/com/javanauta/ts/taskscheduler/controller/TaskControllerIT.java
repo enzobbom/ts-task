@@ -27,6 +27,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.mongodb.autoconfigure.MongoAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient;
 import org.springframework.http.HttpStatus;
@@ -53,7 +54,9 @@ import static org.mockito.Mockito.*;
         },
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebTestClient
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = {
+        MongoAutoConfiguration.class
+})
 class TaskControllerIT {
     private static final UUID USER_ID = UUID.randomUUID();
     private static final String USER_EMAIL = "user@example.com";

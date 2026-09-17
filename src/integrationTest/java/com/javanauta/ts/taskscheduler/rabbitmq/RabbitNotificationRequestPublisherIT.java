@@ -16,6 +16,7 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.mongodb.autoconfigure.MongoAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
@@ -37,7 +38,9 @@ import static org.assertj.core.api.Assertions.assertThat;
                 RabbitNotificationRequestPublisherIT.RabbitTestTopology.class
         }
 )
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = {
+        MongoAutoConfiguration.class
+})
 @Testcontainers
 class RabbitNotificationRequestPublisherIT {
 
