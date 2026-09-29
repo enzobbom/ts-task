@@ -1,0 +1,35 @@
+name: ts-task
+
+services:
+  mongo:
+    image: mongo:8
+    networks:
+      - network
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${TS_MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${TS_MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${TS_MONGO_DB}
+    volumes:
+      - mongo_data:/data/db
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    networks:
+      - network
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ./rabbitmq/definitions.dev.json:/etc/rabbitmq/definitions.json:ro
+
+volumes:
+  mongo_data:
+  rabbitmq_data:
+
+networks:
+  network:
+    driver: bridge

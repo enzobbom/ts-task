@@ -1,0 +1,87 @@
+{
+  "users": [
+    {
+      "name": "guest",
+      "password_hash": "oTQ7FRTk3C/TLLqcJX0ltvnF3xKtkKOYKGz4f3P6f/QGFGz/",
+      "tags": ["administrator"]
+    }
+  ],
+
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+
+"exchanges": [
+    {
+      "name": "notification.exchange",
+      "vhost": "/",
+      "type": "direct",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+
+  "queues": [
+    {
+      "name": "notification.request.queue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "notification.completed.queue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "notification.failed.queue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+
+  "bindings": [
+    {
+      "vhost": "/",
+      "source": "notification.exchange",
+      "destination": "notification.request.queue",
+      "destination_type": "queue",
+      "routing_key": "notification.request",
+      "arguments": {}
+    },
+    {
+      "vhost": "/",
+      "source": "notification.exchange",
+      "destination": "notification.completed.queue",
+      "destination_type": "queue",
+      "routing_key": "notification.completed",
+      "arguments": {}
+    },
+    {
+      "vhost": "/",
+      "source": "notification.exchange",
+      "destination": "notification.failed.queue",
+      "destination_type": "queue",
+      "routing_key": "notification.failed",
+      "arguments": {}
+    }
+  ]
+}
