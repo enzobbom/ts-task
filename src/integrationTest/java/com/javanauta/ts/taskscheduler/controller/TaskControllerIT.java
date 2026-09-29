@@ -26,6 +26,7 @@ import com.javanauta.ts.taskscheduler.shared.exception.enums.ValidationException
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.amqp.autoconfigure.RabbitAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.mongodb.autoconfigure.MongoAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -55,7 +56,8 @@ import static org.mockito.Mockito.*;
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebTestClient
 @EnableAutoConfiguration(exclude = {
-        MongoAutoConfiguration.class
+        MongoAutoConfiguration.class,
+        RabbitAutoConfiguration.class
 })
 class TaskControllerIT {
     private static final UUID USER_ID = UUID.randomUUID();

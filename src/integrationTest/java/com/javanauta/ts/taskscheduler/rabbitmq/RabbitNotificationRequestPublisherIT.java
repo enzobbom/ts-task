@@ -36,6 +36,10 @@ import static org.assertj.core.api.Assertions.assertThat;
                 RabbitNotificationRequestPublisher.class,
                 RabbitCommonConfig.class,
                 RabbitNotificationRequestPublisherIT.RabbitTestTopology.class
+        },
+        // Dummy value required for RabbitProperties binding; @ServiceConnection provides the actual Testcontainers port.
+        properties = {
+                "spring.rabbitmq.port=5672"
         }
 )
 @EnableAutoConfiguration(exclude = {

@@ -36,18 +36,23 @@ class MongoTaskRepositoryIT {
 
     @Container
     static final MongoDBContainer MONGO = new MongoDBContainer("mongo:8")
-            .withEnv("MONGO_INITDB_ROOT_USERNAME", "dev_user")
-            .withEnv("MONGO_INITDB_ROOT_PASSWORD", "devpass");
+            .withEnv("MONGO_INITDB_ROOT_USERNAME", "test_user")
+            .withEnv("MONGO_INITDB_ROOT_PASSWORD", "testpass");
 
     @DynamicPropertySource
     static void mongoProperties(DynamicPropertyRegistry registry) {
         registry.add(
                 "spring.data.mongodb.uri",
                 () -> String.format(
-                        "mongodb://dev_user:devpass@%s:%d?authSource=admin",
+                        "mongodb://test_user:testpass@%s:%d?authSource=admin",
                         MONGO.getHost(),
                         MONGO.getMappedPort(27017)
                 )
+        );
+
+        registry.add(
+                "spring.data.mongodb.database",
+                () -> "ts_task"
         );
     }
 

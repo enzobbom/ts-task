@@ -29,9 +29,9 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.testcontainers.rabbitmq.RabbitMQContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.rabbitmq.RabbitMQContainer;
 
 import static org.awaitility.Awaitility.await;
 import static org.mockito.ArgumentMatchers.argThat;
@@ -46,6 +46,10 @@ import static org.mockito.Mockito.verify;
                 RabbitCommonConfig.class,
                 RabbitInConfig.class,
                 RabbitNotificationListenersIT.RabbitTestTopology.class
+        },
+        // Dummy value required for RabbitProperties binding; @ServiceConnection provides the actual Testcontainers port.
+        properties = {
+                "spring.rabbitmq.port=5672"
         }
 )
 @EnableAutoConfiguration(exclude = {
